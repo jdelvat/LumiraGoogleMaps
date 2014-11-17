@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Costing Geek: Google Map Test</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en"></script>
+    <script>
+		var map;
+
+		function initialize() {
+
+			var chicago = new google.maps.LatLng( 41.850033 , -87.6500523 );
+
+			var mapOptions = {
+				zoom: 10,
+				center: chicago
+			};
+
+			map = new google.maps.Map(document.getElementById('map-canvas'),
+				mapOptions);
+			
+			var l_Latlng = new google.maps.LatLng( 41.8827 , -87.6233 );
+
+			var marker = new google.maps.Marker({
+				map:       map,
+				position:  l_Latlng,
+				title:     "Chicago Cloud Gate"
+			});
+			
+		}
+    </script>
+  </head>
+  <body onload = "javascript:initialize();">
+    <div id="map-canvas"></div>
+  </body>
+</html>
