@@ -1,6 +1,7 @@
 SAP Lumira Custom Extension for Google Maps
 ================
 
+<<<<<<< HEAD
 Author:  Julien Delvat
 Date:    Novembre 2014
 Project: SAP Data Geek Challenge 2014
@@ -20,6 +21,10 @@ Sample data and expected results can be found in the examples folder.
   Sample CSV file for VizPacker and Lumira
 - SAP_Lumira_Extension_Google_Maps_Result.png:
   Expected result in SAP Lumira
+=======
+SAP Lumira Custom Extension for Google Maps
+----------------
+>>>>>>> origin/master
 
 License
 ----------------
