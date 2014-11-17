@@ -42,6 +42,18 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 	        load_gmap();
         });
 
+		// MDL: Get the name of the dimension columns from dimension group: Latitude / Longitude / Desc
+		var dimArr_latLongDesc = data.meta.dimensions('Latitude / Longitude / Desc');
+		var dim_lattitude   = dimArr_latLongDesc[0];
+		var dim_longitude   = dimArr_latLongDesc[1];
+		var dim_description = dimArr_latLongDesc[2];
+		// MDL: end
+
+		// MDL: Get the name of the measure column from the measure group: Quantity
+		var msrArr_Qty = data.meta.measures('Quantity');	
+		var msr_Quantity = msrArr_Qty[0];
+		// MDL: end
+
         // set global variable accessible by all sub-functions
         var my_map;
         var my_LatLng;
@@ -98,9 +110,13 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 	        var j = 0;
 	        for ( var i = 0; i < data.length; i++ )
 	        {
-		        if( data[i].Latitude != undefined &&  data[i].Longitude != undefined )
+				// MDL: Updated to use column names from data set.
+				if( data[i][dim_lattitude] != undefined && data[i][dim_longitude] != undefined )
+				// MDL: end
 		        {
-			        add_marker_lat_long( data[i].Description, data[i].Latitude,  data[i].Longitude, data[i].Quantity );
+			        // MDL: Updated to use column names from data set.
+					add_marker_lat_long( data[i][dim_description], data[i][dim_lattitude],  data[i][dim_longitude], data[i][msr_Quantity] );
+					// MDL: end
 			        j++;
 		        }
 	        }
