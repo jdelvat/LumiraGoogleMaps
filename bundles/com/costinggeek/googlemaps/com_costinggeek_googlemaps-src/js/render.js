@@ -13,31 +13,21 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
      * @param {Object} dispatch - event dispatcher
      */
     var render = function(data, container, width, height, colorPalette, properties, dispatch) {
-		//prepare canvas with width and height of container
-		container.selectAll('svg').remove();
-
+		
         require.config({
 	        paths: {
-				'async': 'sap/bi/bundles/com/costinggeek/googlemaps/com_costinggeek_googlemaps-src/js/async'
+				'com_costinggeek_googlemaps-async': 'sap/bi/bundles/com/costinggeek/googlemaps/com_costinggeek_googlemaps-src/js/async'
 	        }
         });
 
         // add DIV but make sure it's done only once
-        if( $('body').children('#cg_map').length < 1 ) {
-
-	        content  = '<div id="cg_map" width="100%" height="100%"></div>';
-
-        	var elems = document.getElementsByTagName('*');
-	        for( i in elems )
-	        {
-		        if((' ' + elems[i].className + ' ').indexOf(' ' + 'v-m-root' + ' ') > -1) {
-			        elems[i].innerHTML = content;
-		        }
-	        }
+        var mapsContainer = container.select('div');
+        if (!mapsContainer.node()) {
+        	mapsContainer = container.append('div').attr('width', '100%').attr('height', '100%').attr('id', 'cg_map');
         }
 
         // create asynchronous call to google maps api
-        require(['async!https://maps.googleapis.com/maps/api/js?v=3.exp&language=en&sensor=false'], function ( ) {
+        require(['com_costinggeek_googlemaps-async!https://maps.googleapis.com/maps/api/js?v=3.exp&language=en&sensor=false'], function ( ) {
 	        // call google maps API after everything is loaded
 	        load_gmap();
         });
@@ -103,7 +93,8 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 		        zoom:		10
 		        };
 
-	        my_map = new google.maps.Map(document.getElementById('cg_map'),
+	        //my_map = new google.maps.Map(document.getElementById('cg_map'),
+	        my_map = new google.maps.Map(mapsContainer.node(),
 		        mapOptions);
 
 	        // convert all data to markers
