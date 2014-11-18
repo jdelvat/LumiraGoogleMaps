@@ -18,7 +18,7 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 
         require.config({
 	        paths: {
-				'async': 'sap/bi/bundles/com/costinggeek/googlemaps/com_costinggeek_googlemaps-src/js/async'
+				'com_costinggeek_googlemaps-async': 'sap/bi/bundles/com/costinggeek/googlemaps/com_costinggeek_googlemaps-src/js/async'
 	        }
         });
 
@@ -37,7 +37,7 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
         }
 
         // create asynchronous call to google maps api
-        require(['async!https://maps.googleapis.com/maps/api/js?v=3.exp&language=en&sensor=false'], function ( ) {
+        require(['com_costinggeek_googlemaps-async!https://maps.googleapis.com/maps/api/js?v=3.exp&language=en&sensor=false'], function ( ) {
 	        // call google maps API after everything is loaded
 	        load_gmap();
         });
