@@ -23,7 +23,7 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
         // add DIV but make sure it's done only once
         var mapsContainer = container.select('div');
         if (!mapsContainer.node()) {
-        	mapsContainer = container.append('div').attr('width', '100%').attr('height', '100%').attr('id', 'cg_map');
+        	mapsContainer = container.append('div').attr('width', '100%').attr('height', '100%').attr('class', 'com_costinggeek_googlemaps-cg_map');
         }
 
         // create asynchronous call to google maps api
@@ -54,7 +54,7 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 
 	        var infowindow = new google.maps.InfoWindow(
 	        { 
-		        content: '<div id="infoWindow"><b>' + my_description + ':</b> ' + my_quantity + '</div>'
+		        content: '<div class="com_costinggeek_googlemaps-infoWindow"><b>' + my_description + ':</b> ' + my_quantity + '</div>'
 	        });
 
         	google.maps.event.addListener( my_marker, 'click', function() {
@@ -93,7 +93,6 @@ define("com_costinggeek_googlemaps-src/js/render", ["com_costinggeek_googlemaps-
 		        zoom:		10
 		        };
 
-	        //my_map = new google.maps.Map(document.getElementById('cg_map'),
 	        my_map = new google.maps.Map(mapsContainer.node(),
 		        mapOptions);
 
